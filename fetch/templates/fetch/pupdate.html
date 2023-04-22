@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 's.css' %}">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="wrapper">
+    <div class="logo">
+       <center> <img src="{% static 'N.png' %}"></center>
+       <br>
+       
+    </div>
+   
+    <div>
+            <center> <b>  LogIn To Refer<b> </center>
+                <br>
+    </div>
+    <form method="post" action="/fetch/pupdate/" class="p-3 mt-3">
+        {% csrf_token %}
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="username" id="username" placeholder="username" Required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" name="pass1" id="pass1" placeholder=" New -Password" Required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" name="otp" id="otp" placeholder="Verification Code" Required>
+        </div>
+        <button return redirect('/fetch/LogIn')class="btn mt-3">Submit</button>
+        </form>
+    <div class="text-center fs-6">
+        <a href="/fetch/Login/">Login?</a>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+</div>
+</body>
+</html>

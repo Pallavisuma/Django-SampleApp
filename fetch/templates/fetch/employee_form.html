@@ -1,0 +1,18 @@
+{% extends "fetch/base.html" %}
+{% load crispy_forms_tags %}
+{%block content%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<form action ="" method ="post" autocomplete ="off">
+
+    {%csrf_token%}
+    <div class ="conatiner" >
+    {{ form| crispy}}
+    
+    <button type ="submit">Submit</button>
+    <a href ={% url 'employee_list' %} class ="btn text-secondary px-0" style="color:black" >List</a>
+    </div>
+   
+</form>
+
+
+{%endblock %}

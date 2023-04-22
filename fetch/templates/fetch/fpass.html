@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 's.css' %}">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="wrapper">
+    <div class="logo">
+       <center> <img src="{% static 'N.png' %}"></center>
+       <br>
+       
+    </div>
+   
+    <div>
+            <center> <b>  Reset Password<b> </center>
+                <br>
+    </div>
+
+<form method="post" action="/fetch/fpass/" class="mb-2">
+    {% csrf_token %}
+<div class="form-group">
+    <label for="emailid">Email ID</label>
+    <input type="text" class="form-control" id="emailid" name="emailid" placeholder="Enter Your Email ID for RESET" Required>
+</div>
+<br>
+<button type="submit" class="btn btn-primary">RESET BUTTON</button>
+</form>
+   
+    <div class="text-center fs-6">
+        <a href="/fetch/pupdate/">Update Password </a>
+    </div>
+</div>
+</body>
+</html>

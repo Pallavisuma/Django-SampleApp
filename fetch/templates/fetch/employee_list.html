@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Viewer</title>
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            flex: 1;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-description {
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            max-height: 150px; /* Set initial height */
+        }
+
+        .pdf-rendering {
+            flex: 2;
+        }
+
+        .pdf-description-button {
+            margin-top: 10px;
+        }
+
+        .pdf-table {
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* Responsive styles for smaller screens */
+        @media screen and (max-width: 768px) {
+            .pdf-description,
+            .pdf-rendering,
+            .pdf-table {
+                flex: 1;
+                min-height: 150px;
+                margin: 5px;
+            }
+        }
+    </style>
+    <script>
+       
+
+        function viewPDF() {
+            window.open('/path/to/sample.pdf', '_blank');
+        }
+
+        function togglePDFTable() {
+            var pdfTable = document.getElementById('pdf-table');
+            if (pdfTable.style.display === 'none') {
+                pdfTable.style.display = 'block';
+            } else {
+                pdfTable.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="column pdf-description" id="pdf-description">
+            <h2>JOB Description</h2>
+            <p>This column is for displaying the description or details about the PDF file.</p>
+       
+            <button class="pdf-description-button" onclick="viewPDF()">View JD</button>
+            <button class="pdf-description-button" onclick="togglePDFTable()">Refer</button>
+        </div>
+   
+        <div class="column pdf-table" id="pdf-table">
+            <h2>REFER LIST </h2>
+            <p>This column is for displaying a REFER LIST related to the JD.</p>
+                    <div class="panel-body table-responsive">
+                     <center>   <table class="table" border>
+                            <thead>
+                                <tr>
+                                  
+                                    <th>Full Name</th>
+                                     <th> Mobile </th>
+                                    <th> Position </th>
+                                    <th> Action &nbsp;&nbsp;&nbsp; <a href="{% url 'employee_insert' %}" data-tip="AddNew" ><i class="fa fa-plus" style="color:white"></i>Add New</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody border>
+                                    {% for employee in em%}
+                                <tr>
+                                    
+                                    <td>{{employee.firstname}} {{employee.lastname}}</td>
+                                    <td>{{employee.phonenumber}}</td>
+                                    <td>{{employee.position}}</td>
+                                 
+                                   <td> 
+                                        <ul class="action-list">
+                                            <li><a href="{% url 'update' employee.id %}" data-tip="Edit"><i class="fa fa-edit"></i>Update</a></li>
+                                            <li><a href="{% url 'employee_delete' employee.id %}" data-tip="Delete"><i class="fa fa-trash"></i>Delete</a></li>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                   {% endfor %}
+                            </tbody>
+                        </table></center>
+                    </div>
+                    <div class="panel-footer">
+                       
+    </center>
+                          
+                     
+             
+    </div>
+</body>
+</html>
